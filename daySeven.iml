@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/OldSnacks" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/menstrualWahala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Seven days/menstrualWahala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/phoneBook" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

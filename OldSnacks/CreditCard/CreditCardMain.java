@@ -1,3 +1,5 @@
+package CreditCard;
+
 import java.util.Scanner;
 
 public class CreditCardMain {

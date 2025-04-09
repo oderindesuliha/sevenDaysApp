@@ -1,40 +1,33 @@
+
 import java.time.LocalDate;
 
     public class MenstrualTracker {
         private LocalDate startDate;
         private int cycleLength;
-        int periodLength;
-        private LocalDate startOvulationPeriod;
+        private int periodLength;
+
+
 
         public MenstrualTracker(LocalDate startDate, int cycleLength, int periodLength) {
             this.startDate = startDate;
             this.cycleLength = cycleLength;
             this.periodLength = periodLength;
-        }
 
-        public LocalDate getStartDate() {
-            return startDate;
         }
 
         public LocalDate getEndDate() {
-            return startDate.plusDays(periodLength - 1);
+
+            return startDate.plusDays(
+                    periodLength - 1);
         }
 
-        public int getPeriodLength(int i) {
-            if (periodLength >= 3 && periodLength <= 9) return periodLength;
-            else throw new IllegalArgumentException("PeriodLength should be between 3-9days");
-        }
+        public LocalDate nextPeriod() {
 
-        public LocalDate nextStartDate() {
             return startDate.plusDays(cycleLength);
         }
 
-        public LocalDate startOvulation() {
-            return startOvulationPeriod = nextStartDate().minusDays(14);
-        }
-
-        public LocalDate endOvulation() {
-            return startOvulation().plusDays(1);
+        public LocalDate ovulation() {
+            return startDate.plusDays(cycleLength - 14);
         }
 
         public LocalDate startSafePeriod() {
@@ -46,8 +39,47 @@ import java.time.LocalDate;
         }
 
         public LocalDate fertilityWindowStarts() {
-            return startOvulation().minusDays(3);
+            return ovulation().minusDays(3);
         }
 
+        public LocalDate fertilityWindowEnds() {
+            return ovulation().plusDays(1);
+        }
+
+        public String validateCycleLength() {
+            if (cycleLength < 21 || cycleLength > 35){ return "Irregular cycle length......Consult a doctor"; }
+            else{ return cycleLength + ""; }
+        }
+
+        public String validateFlowDays() {
+            if (periodLength < 3 || periodLength > 9) return "Irregular flow days...... Consult a doctor";
+            else{ return periodLength + ""; }
+        }
+
+        public String latePeriod() {
+            LocalDate expectedPeriod = startDate.plusDays(cycleLength);
+            if (LocalDate.now().isAfter(expectedPeriod.plusDays(5))) {
+                return "Take a pregnancy test or see a doctor";
+            } else {
+                return expectedPeriod.toString();
+            }
+        }
+
+        public LocalDate verifyingOvulationDay() {
+            return startDate.plusDays(cycleLength - 14);
+        }
+
+        public String validateFertilityWindow() {
+
+            return "Your fertility window is from: " + fertilityWindowStarts() + "to" + fertilityWindowEnds();
+        }
+
+        public LocalDate startSafePeriodAfterOvulation() {
+            return ovulation().plusDays(2);
+        }
+
+        public LocalDate endSafePeriodAfterOvulation() {
+            return startDate.plusDays(cycleLength-1);
+        }
     }
 
