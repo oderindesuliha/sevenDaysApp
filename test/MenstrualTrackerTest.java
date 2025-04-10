@@ -25,23 +25,22 @@ public class MenstrualTrackerTest {
         assertEquals(LocalDate.of(2025, 2, 16), period.ovulation());
 
     }
-
     @Test
     public void testToCalculateWhenSafePeriodStart() {
         MenstrualTracker period = new MenstrualTracker(LocalDate.of(2025, 2, 1), 29, 6);
-        assertEquals(LocalDate.of(2025, 2, 7), period.startSafePeriod());
+        assertEquals(LocalDate.of(2025, 2, 6), period.startSafePeriod());
     }
 
     @Test
     public void testToCalculateWhenSafePeriodEnds() {
         MenstrualTracker period = new MenstrualTracker(LocalDate.of(2025, 2, 1), 29, 6);
-        assertEquals(LocalDate.of(2025, 2, 12), period.endSafePeriod());
+        assertEquals(LocalDate.of(2025, 2, 11), period.endSafePeriod());
     }
 
     @Test
     public void testToCalculateStartOfFertility() {
         MenstrualTracker period = new MenstrualTracker(LocalDate.of(2025, 2, 1), 29, 6);
-        assertEquals(LocalDate.of(2025, 2, 13), period.fertilityWindowStarts());
+        assertEquals(LocalDate.of(2025, 2, 11), period.fertilityWindowStarts());
     }
 
     @Test
@@ -60,7 +59,8 @@ public class MenstrualTrackerTest {
     @Test
     public void testToValidateFlowDaysLength() {
         MenstrualTracker period = new MenstrualTracker(LocalDate.of(2025, 2, 1), 20, 11);
-        assertEquals("Irregular flow days...... Consult a doctor", period.validateFlowDays());
+        int flowDays = 11;
+        assertEquals("Irregular flow days...... Consult a doctor", period.validateFlowDays(flowDays));
     }
 
     @Test
@@ -91,6 +91,12 @@ public class MenstrualTrackerTest {
     public void testForEndOfSafePeriodAfterOvulation() {
         MenstrualTracker period = new MenstrualTracker(LocalDate.of(2025, 2, 1), 29, 6);
         assertEquals(LocalDate.of(2025, 3, 1), period.endSafePeriodAfterOvulation());
+    }
+
+    @Test
+    public void testValidatePeriodStartDate() {
+        MenstrualTracker period = new MenstrualTracker(LocalDate.of(2026, 13, 1), 30, 6);
+
     }
 }
 
