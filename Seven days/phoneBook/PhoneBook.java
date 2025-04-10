@@ -1,18 +1,20 @@
 import java.util.Scanner;
 
 public static String menu() {
-    return "\n1. Add contact\n" +
-            "2. Remove contact\n" +
-            "3. Find contact by phone number\n" +
-            "4. Find contact by first name\n" +
-            "5. Find contact by last name\n" +
-            "6. Edit contact\n" +
-            "7. Exit\n";
+    return """
+            1. Add contact
+            2. Remove contact
+            3. Find contact by phone number
+            4. Find contact by first name
+            5. Find contact by last name
+            6. Edit contact
+            7. Exit
+            """;
 }
 
 public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
-    PhoneBookApp mainApp = new PhoneBookApp();
+    PhoneBookApp contactApp = new PhoneBookApp();
 
     while (true) {
         System.out.println(menu());
@@ -30,7 +32,7 @@ public static void main(String[] args) {
                 String phoneNumber = input.nextLine();
                 System.out.println("Enter email: ");
                 String email = input.nextLine();
-                String addedContact = mainApp.addContacts(firstName, lastName, phoneNumber, email);
+                String addedContact = contactApp.addContacts(firstName, lastName, phoneNumber, email);
                 System.out.println("Contact added: " + addedContact);
                 break;
 
@@ -39,29 +41,29 @@ public static void main(String[] args) {
                 firstName = input.nextLine();
                 System.out.println("Enter last name: ");
                 lastName = input.nextLine();
-                String removedContact = mainApp.removeContact(firstName, lastName);
+                String removedContact = contactApp.removeContact(firstName, lastName);
                 System.out.println(removedContact);
                 break;
 
             case 3:
                 System.out.println("Enter phone number: ");
                 phoneNumber = input.nextLine();
-                String foundNumber = mainApp.findNumberWithNumber(phoneNumber);
-                System.out.println("Result: " + foundNumber);
+                String foundNumber = contactApp.findNumberWithNumber(phoneNumber);
+                System.out.println(foundNumber);
                 break;
 
             case 4:
                 System.out.println("Enter first name: ");
                 firstName = input.nextLine();
-                String foundByFirstName = mainApp.findContactByFirstName(firstName);
-                System.out.println("Result: " + foundByFirstName);
+                String foundByFirstName = contactApp.findContactByFirstName(firstName);
+                System.out.println(foundByFirstName);
                 break;
 
             case 5:
                 System.out.println("Enter last name: ");
                 lastName = input.nextLine();
-                String foundByLastName = mainApp.findContactByLastName(lastName);
-                System.out.println("Result: " + foundByLastName);
+                String foundByLastName = contactApp.findContactByLastName(lastName);
+                System.out.println(foundByLastName);
                 break;
 
             case 6:
@@ -73,13 +75,12 @@ public static void main(String[] args) {
                 phoneNumber = input.nextLine();
                 System.out.println("Enter new email: ");
                 String newEmail = input.nextLine();
-                String editedContact = mainApp.editContact(firstName, lastName, phoneNumber, newEmail);
+                String editedContact = contactApp.editContact(firstName, lastName, phoneNumber, newEmail);
                 System.out.println(editedContact);
                 break;
 
             case 7:
-                System.out.println("Exiting the phone book. Goodbye!");
-                input.close();
+                System.out.println("Exiting the app. Goodbye!");
                 return;
 
             default:
@@ -87,5 +88,4 @@ public static void main(String[] args) {
                 break;
         }
     }
-}
 }
