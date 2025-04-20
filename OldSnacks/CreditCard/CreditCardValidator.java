@@ -36,11 +36,12 @@ public class CreditCardValidator {
     }
 
     public static int sumIndexes(int[] numbers) {
+
         return doubleEvenIndexes(numbers) + oddIndexes(numbers);
     }
 
     public static String cardValidation(int[] numbers) {
-        if(sumIndexes(numbers) / 10 == 0) {
+        if(sumIndexes(numbers) % 10 == 0) {
             return "Valid";
         }
         else { return "Invalid";}

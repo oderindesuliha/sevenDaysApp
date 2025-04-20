@@ -9,6 +9,11 @@ public class CreditCardMain {
         Scanner input = new Scanner(System.in);
         System.out.println("Hello!, Kindly Enter Your Card Number To Verify: ");
         String creditCardNumber = input.nextLine();
+        while(!creditCardNumber.matches("^[0-9]+$")) {
+            System.out.println("Invalid Card Number");
+            creditCardNumber = input.nextLine();
+        }
+
 
         while(creditCardNumber.length() < 13 || creditCardNumber.length() > 16) {
             System.out.println("Enter valid credit card number between 13 and 16 digits");

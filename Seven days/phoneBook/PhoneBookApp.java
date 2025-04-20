@@ -20,10 +20,10 @@ public class PhoneBookApp {
     }
 
     public String removeContact(String firstName, String lastName) {
-        for (int i = 0; i < contacts.size(); i++) {
-            String[] contact = contacts.get(i);
+        for (int index = 0; index < contacts.size(); index++) {
+            String[] contact = contacts.get(index);
             if (contact[0].equals(firstName) && contact[1].equals(lastName)) {
-                contacts.remove(i);
+                contacts.remove(index);
                 count--;
                 return "Contact removed: " + firstName + " " + lastName;
             }
@@ -71,5 +71,19 @@ public class PhoneBookApp {
 
     public int getCount() {
         return count;
+    }
+
+    public String phoneNumberIsValid(String number) {
+        if(number.charAt(0) == '0'){
+            return "This is a valid Nigerian number";
+        }
+        return "Invalid Nigerian number";
+        }
+
+    public String phoneNumberLength(String number) {
+        if(number.length() > 0 && number.length() <= 11){
+           return "This is a valid Nigerian number length";
+        }else if(number.length() > 11 && number.length() <= 17){}
+        return number;
     }
 }

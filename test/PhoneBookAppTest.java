@@ -85,4 +85,15 @@ public class PhoneBookAppTest {
         assertEquals("Contact updated: Dupe Adeola 09099829999 dupe.new@gmail.com", result);
     }
 
+    @Test
+    public void testThatPhoneNumberIsValid() {
+       String result = phone.phoneNumberIsValid("7774");
+        assertEquals("Invalid Nigerian number", result);
+    }
+
+    @Test
+    public void testThatMethodIsCheckingLength() {
+        String result = phone.phoneNumberLength("1");
+        assertEquals("This is a valid Nigerian number length", result);
+    }
 }

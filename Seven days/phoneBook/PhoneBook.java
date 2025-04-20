@@ -17,21 +17,50 @@ public static void main(String[] args) {
     PhoneBookApp contactApp = new PhoneBookApp();
 
     while (true) {
+        int choice;
         System.out.println(menu());
         System.out.println("Enter your choice (1 - 7): ");
-        int choice = input.nextInt();
-        input.nextLine();
+        String choiceString = input.nextLine();
+        while(!choiceString.matches("[0-9]") || choiceString.isEmpty()) {
+            System.out.println("invalid choice..... Enter choice between 1 and 7");
+            choiceString= input.nextLine();
+        }
+        choice = Integer.parseInt(choiceString);
+
+        while (choice < 1 || choice > 7) {
+            System.out.println("Enter valid choice (1 - 7): ");
+            choice = input.nextInt();
+        }
+//        input.nextLine();
 
         switch (choice) {
             case 1:
                 System.out.println("Enter first name: ");
                 String firstName = input.nextLine();
+                while(!firstName.matches("[a-zA-Z]+") || firstName.isEmpty()) {
+                    System.out.println("Invalid first name.......Enter valid first name:");
+                    firstName = input.nextLine();
+                }
                 System.out.println("Enter last name: ");
                 String lastName = input.nextLine();
+                while(!lastName.matches("[a-zA-Z]+") || lastName.isEmpty()) {
+                    System.out.println("Invalid last name.......Enter valid last name:");
+                    lastName = input.nextLine();
+                }
                 System.out.println("Enter phone number: ");
                 String phoneNumber = input.nextLine();
+                while(!phoneNumber.matches("^[0-9]+$") || phoneNumber.isEmpty() || PhoneBookApp.phoneNumberIsValid(phoneNumber)) {
+                    System.out.println("Invalid phone number.....Enter valid phone number:");
+                    phoneNumber = input.nextLine();
+                }
+
                 System.out.println("Enter email: ");
                 String email = input.nextLine();
+                while(!email.matches("[a-zA-Z]+@gmail.com") || email.isEmpty()) {
+                    System.out.println("Invalid email.......Enter valid email:");
+                    email = input.nextLine();
+
+                }
                 String addedContact = contactApp.addContacts(firstName, lastName, phoneNumber, email);
                 System.out.println("Contact added: " + addedContact);
                 break;
